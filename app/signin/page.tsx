@@ -1,5 +1,6 @@
 import AcmeLogo from '@/app/ui/acme-logo';
-import LoginForm from '@/app/ui/login-form';
+import SignInPage from "@/app/ui/signin-form";
+import GoogleLoginButton from '../ui/GoogleLoginButton';
  
 export default function LoginPage() {
   return (
@@ -10,7 +11,8 @@ export default function LoginPage() {
             <AcmeLogo />
           </div>
         </div>
-        <LoginForm />
+        <SignInPage />
+        <GoogleLoginButton />
       </div>
     </main>
   );

@@ -6,7 +6,7 @@ import { lusitana } from '@/app/ui/fonts';
 import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
 import { Suspense } from 'react';
 import { fetchInvoicesPages } from '@/app/lib/data';
- 
+import { requireAdminSession } from '@/app/lib/actions';
 export default async function Page({
   searchParams,
 }: {
@@ -15,6 +15,7 @@ export default async function Page({
     page?: string;
   };
 }) {
+  const session = await requireAdminSession();
   const query = searchParams?.query || '';
   const currentPage = Number(searchParams?.page) || 1;
 

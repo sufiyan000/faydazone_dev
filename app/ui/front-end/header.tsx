@@ -63,7 +63,7 @@ const Header = () => {
             </span>
           </Link>
           
-          <Link href="/login" className="text-sm hover:text-[#07f0f0] relative">
+          <Link href="/signin" className="text-sm hover:text-[#07f0f0] relative">
             <svg
               className="w-6 h-6"
               fill="none"

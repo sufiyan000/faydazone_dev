@@ -5,7 +5,9 @@ import { lusitana } from '@/app/ui/fonts';
 import { fetchLatestInvoices,fetchCardData  } from '@/app/lib/data';
 import { Suspense } from 'react';
 import { RevenueChartSkeleton } from '@/app/ui/skeletons';
+import { requireAdminSession } from '@/app/lib/actions';
 export default async function Page() {
+  const session = await requireAdminSession();
   const latestInvoices = await fetchLatestInvoices();
   const {
     numberOfInvoices,
