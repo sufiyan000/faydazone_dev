@@ -19,7 +19,15 @@ export const authOptions: AuthOptions = { // Exporting authOptions
         const user = users.find(
           (u) => u.email === credentials?.email && u.password === credentials?.password
         );
-        return user || null;
+        if (user) {
+          return {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+          };
+        }
+        return null;
       },
     }),
      // Adding Google Provider
@@ -45,19 +53,21 @@ export const authOptions: AuthOptions = { // Exporting authOptions
         //   });
         //   await newUser.save();
         // }
-        token.role = user.role || 'user';  // Default to 'user' if role is undefined
+        token.role = user.role || 'user'; // Default role
         token.name = user.name;
         token.email = user.email;
-        token.image = user.image;
+        token.image = user.image || null;
       }
       return token;
     },
     async session({ session, token }) {
       // Add user details from the token to the session
-      session.user.role = token.role as string;
-      session.user.name = token.name as string;
-      session.user.email = token.email as string;
-      session.user.image = token.image as string;
+      session.user = {
+        role: token.role as string,
+        name: token.name as string,
+        email: token.email as string,
+        image: token.image as string,
+      };
       return session;
     },
   },
